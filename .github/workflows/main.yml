@@ -2,14 +2,13 @@ name: update sharedlayer library on aws
 on:
   push:
     branches:
-    - main
+      - main
 jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
-    - name: Sleep for 30 seconds
-      run: sleep 30s
-      shell: bash
-    - name: Update To Latest Version
-      run: wget --no-check-certificate --quiet \  --method POST \  --timeout=0 \  --header 'Content-Type: application/json' \  --body-data '{    "function":{		"name": "lambdafunctions"	},	"layer":{		"name":"messageLibraryLayer",		"description":"",		"compatible_runtimes":["python3.9"],		"license_info":"",		"compatible_architectures":["x86_64"]	}}' \   'https://4lhz7nq5cn3ojggwtfqa2g6q2a0psxso.lambda-url.us-east-1.on.aws/UpdateFunctionToLatestVersion'
-      
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+      - name: Update To Latest Version
+        run: "wget --no-check-certificate --quiet \\  --method POST \\  --timeout=0 \\  --header 'Content-Type:application/json' \\  --body-data '{    \"function\":{\t\t\"name\":\"lambdafunctions\"\t},\t\"layer\":{\t\t\"name\":\"messageLibraryLayer\",\t\t\"description\":\"\",\t\t\"compatible_runtimes\":[\"python3.9\"],\t\t\"license_info\":\"\",\t\t\"compatible_architectures\":[\"x86_64\"]\t}}' \\   'https://4lhz7nq5cn3ojggwtfqa2g6q2a0psxso.lambda-url.us-east-1.on.aws/UpdateFunctionToLatestVersion'"
