@@ -7,13 +7,9 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
-    - name: Upload To New Layer
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: 'https://4lhz7nq5cn3ojggwtfqa2g6q2a0psxso.lambda-url.us-east-1.on.aws/UploadNewLayerVersion'
-        method: 'POST'
-        customHeaders: '{"Content-Type": "application/json"}'
-        data: '{	"layer":{		"name":"messageLibraryLayer",		"description":"",		"compatible_runtimes":["python3.9"],		"license_info":"",		"compatible_architectures":["x86_64"]	},	"zip_location":{		"type": "S3",		"S3Bucket": "lambdalayersbuildbucket",		"S3Key": "messageLibrary.zip"	}}'
+    - name: Sleep for 30 seconds
+      run: sleep 30s
+      shell: bash
     - name: Update To Latest Version
       uses: fjogeleit/http-request-action@v1
       with:
