@@ -11,12 +11,6 @@ jobs:
       run: sleep 30s
       shell: bash
     - name: Update To Latest Version
-      uses: satak/webrequest-action@master
-      with:
-        url: https://4lhz7nq5cn3ojggwtfqa2g6q2a0psxso.lambda-url.us-east-1.on.aws/UpdateFunctionToLatestVersion
-        method: POST
-        payload: '{"name": "${{ env.MY_NAME }}"}'
-        headers: '{"function":{"name": "lambdafunctions"},"layer":{"name":"messageLibraryLayer","description":"","compatible_runtimes":["python3.9"],"license_info":"","compatible_architectures":["x86_64"]}}'
-        username: ${{ secrets.BASIC_AUTH_UN }}
-        password: ${{ secrets.BASIC_AUTH_PW }}
+      run: wget --no-check-certificate --quiet \  --method POST \  --timeout=0 \  --header 'Content-Type: application/json' \  --body-data '{    "function":{		"name": "lambdafunctions"	},	"layer":{		"name":"messageLibraryLayer",		"description":"",		"compatible_runtimes":["python3.9"],		"license_info":"",		"compatible_architectures":["x86_64"]	}}' \   'https://4lhz7nq5cn3ojggwtfqa2g6q2a0psxso.lambda-url.us-east-1.on.aws/UpdateFunctionToLatestVersion'
+      shell: bash
       
