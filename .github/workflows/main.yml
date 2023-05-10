@@ -11,9 +11,6 @@ jobs:
       run: sleep 30s
       shell: bash
     - name: Update To Latest Version
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: 'https://4lhz7nq5cn3ojggwtfqa2g6q2a0psxso.lambda-url.us-east-1.on.aws/UploadNewLayerVersion'
-        method: 'POST'
-        customHeaders: '{"Content-Type": "application/json"}'
-        data: '    "function":{		"name": "lambdafunctions"	},	"layer":{		"name":"messageLibraryLayer",		"description":"",		"compatible_runtimes":["python3.9"],		"license_info":"",		"compatible_architectures":["x86_64"]	}'
+      run: curl --location --request POST 'https://4lhz7nq5cn3ojggwtfqa2g6q2a0psxso.lambda-url.us-east-1.on.aws/UpdateFunctionToLatestVersion' \--header 'Content-Type: application/json' \--data-raw '{    "function":{		"name": "lambdafunctions"	},	"layer":{		"name":"messageLibraryLayer",		"description":"",		"compatible_runtimes":["python3.9"],		"license_info":"",		"compatible_architectures":["x86_64"]	}}'
+      shell: bash
+      
