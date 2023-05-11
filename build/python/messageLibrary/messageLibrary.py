@@ -8,7 +8,7 @@ name = "Message Library"
 
 def replace_letters(message):
     letter_target = 'a'
-    letter_replacement = 'z'
+    letter_replacement = 'test2'
     result = ""
     for i in range(0, len(message)):
         if message[i] == letter_target:
